@@ -2,9 +2,11 @@
 
 This project studies posterior collapse in variational autoencoders through the lens of the paper:
 
+```
 **Alexander A. Alemi, Ben Poole, Ian Fischer, Joshua V. Dillon, Rif A. Saurous, and Kevin Murphy.**  
 *Fixing a Broken ELBO.*  
 Proceedings of the 35th International Conference on Machine Learning (ICML), volume 80, pages 159–168, 2018.
+```
 
 The central question is not only whether the KL term becomes small, but whether the latent variable \(z\) actually carries information about the input \(x\).
 
@@ -15,9 +17,11 @@ A VAE balances two competing goals:
 
 This gives the familiar \(\beta\)-VAE objective
 
+```
 \[
 \mathcal{L}_{\beta} = D + \beta R.
 \]
+```
 
 A key point is that the rate decomposes as
 

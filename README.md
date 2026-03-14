@@ -1,9 +1,8 @@
 # VAE Posterior Collapse: Rate, Distortion, and Latent Information
 
-This project studies posterior collapse in variational autoencoders through the lens of the paper:
+This project studies posterior collapse in variational autoencoders through the lens of the paper [[1]](#1)
 
-
-### Alexander A. Alemi, Ben Poole, Ian Fischer, Joshua V. Dillon, Rif A. Saurous, and Kevin Murphy:   Fixing a Broken ELBO,  Proceedings of the 35th International Conference on Machine Learning (ICML), volume 80, pages 159–168, 2018.
+---------------------------------------------------------------------------------------
 
 
 The central question is not only whether the KL term becomes small, but whether the latent variable \(z\) actually carries information about the input \(x\).
@@ -52,3 +51,15 @@ which penalizes collapse toward zero rate and helps preserve nontrivial latent u
 
 
 ## Numerical Results
+
+
+
+------------------------------------------------------------
+
+
+
+## References
+<a id="1">[1]</a> 
+Alexander A. Alemi, Ben Poole, Ian Fischer, Joshua V. Dillon, Rif A. Saurous, and Kevin Murphy. 
+*Fixing a Broken ELBO. 
+Proceedings of the 35th International Conference on Machine Learning (ICML), volume 80, pages 159–168, 2018.

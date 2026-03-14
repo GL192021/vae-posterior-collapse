@@ -61,5 +61,5 @@ which penalizes collapse toward zero rate and helps preserve nontrivial latent u
 ## References
 <a id="1">[1]</a> 
 Alexander A. Alemi, Ben Poole, Ian Fischer, Joshua V. Dillon, Rif A. Saurous, and Kevin Murphy. 
-*Fixing a Broken ELBO. 
+*Fixing a Broken ELBO*. 
 Proceedings of the 35th International Conference on Machine Learning (ICML), volume 80, pages 159–168, 2018.

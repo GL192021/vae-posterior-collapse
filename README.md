@@ -23,12 +23,12 @@ $$
 A key point is that the rate decomposes as
 
 $$
-R = I(X;Z) + \mathrm{KL}(q(z)\,\Vert\, p(z)),
+R = I(X;Z) + \mathrm{KL}(q(z) \Vert p(z)),
 $$
 
-so a large KL term is not automatically evidence of a meaningful latent representation. It may come from true information \(I(X;Z)\), or simply from mismatch between the aggregated posterior \(q(z)\) and the prior \(p(z)\).
+so a large KL term is not automatically evidence of a meaningful latent representation. It may come from true information \$I(X;Z)$, or simply from mismatch between the aggregated posterior $q(z)$ and the prior $p(z)$.
 
-In this project, I train MNIST VAEs across a sweep of \(\beta\) values and compare them using:
+In this project, I train MNIST VAEs across a sweep of $\beta$ values and compare them using:
 
 - reconstruction loss,
 - KL / rate,

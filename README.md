@@ -23,7 +23,7 @@ $$
 A key point is that the rate decomposes as
 
 $$
-R = I(X;Z) + \mathrm{KL}(q(z) \| p(z)),
+R = I(X;Z) + \mathrm{KL}(q(z)\,\Vert\, p(z)),
 $$
 
 so a large KL term is not automatically evidence of a meaningful latent representation. It may come from true information \(I(X;Z)\), or simply from mismatch between the aggregated posterior \(q(z)\) and the prior \(p(z)\).

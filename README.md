@@ -39,9 +39,11 @@ In this project, I train MNIST VAEs across a sweep of \(\beta\) values and compa
 - reconstructions and prior samples.
 
 I also discuss a target-rate objective of the form
+
 $$
 L = D + \lambda |R - R^*|,
 $$
+
 which penalizes collapse toward zero rate and helps preserve nontrivial latent usage. In addition, I include a **“fake large KL”** counterexample showing that high KL alone does not guarantee an informative latent space.
 
 

@@ -5,14 +5,14 @@ This project studies posterior collapse in variational autoencoders through the 
 ---------------------------------------------------------------------------------------
 
 
-The central question is not only whether the KL term becomes small, but whether the latent variable \(z\) actually carries information about the input \(x\).
+The central question is not only whether the KL term becomes small, but whether the latent variable $z$ actually carries information about the input $x$.
 
 A VAE balances two competing goals:
 
 - **distortion**: reconstruct the data well,
 - **rate**: keep the encoder distribution close to the prior.
 
-This gives the familiar \(\beta\)-VAE objective
+This gives the familiar $\beta$-VAE objective
 
 
 $$
@@ -60,6 +60,6 @@ which penalizes collapse toward zero rate and helps preserve nontrivial latent u
 
 ## References
 <a id="1">[1]</a> 
-Alexander A. Alemi, Ben Poole, Ian Fischer, Joshua V. Dillon, Rif A. Saurous, and Kevin Murphy. \ 
-*Fixing a Broken ELBO*. \ 
+Alexander A. Alemi, Ben Poole, Ian Fischer, Joshua V. Dillon, Rif A. Saurous, and Kevin Murphy. 
+**Fixing a Broken ELBO**. 
 Proceedings of the 35th International Conference on Machine Learning (ICML), volume 80, pages 159–168, 2018.

@@ -26,7 +26,7 @@ $$
 R = I(X;Z) + \mathrm{KL}(q(z) \Vert p(z)),
 $$
 
-so a large KL term is not automatically evidence of a meaningful latent representation. It may come from true information \$I(X;Z)$, or simply from mismatch between the aggregated posterior $q(z)$ and the prior $p(z)$.
+where $I(X;Z)$ is the *Mutual Information*, $p(z)$ is the prior distribution and $q(z)$ is the aggregated posterior. This decomposition shows that a large KL term is not automatically evidence of a meaningful latent representation. It may come from true information \$I(X;Z)$, or simply from mismatch between the aggregated posterior $q(z)$ and the prior $p(z)$.
 
 In this project, I train MNIST VAEs across a sweep of $\beta$ values and compare them using:
 

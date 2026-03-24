@@ -55,15 +55,7 @@ The `notes/` folder contains a brief discussion of the mathematical heuristics b
 
 
 
----
 
-
-
-## Numerical Results
-
-
-
----
 
 
 

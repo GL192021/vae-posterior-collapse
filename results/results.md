@@ -1,106 +1,130 @@
 # Numerical Results
 
-We evaluate posterior collapse using four complementary diagnostics:
-validation loss, rate, MI proxy, and latent-intervention sensitivity.
+We evaluate posterior collapse using four complementary diagnostics: validation loss, rate, an approximate mutual-information proxy, and latent-intervention sensitivity.
 
-### 1. Similar loss can hide different latent usage
-
-![Loss vs MI](vae-posterior-collapse/figs/fig1_val_loss_vs_mi.png) 
-
-Runs with nearly equal validation loss can still have substantially different MI proxy.
-This shows that ELBO / validation loss alone is not enough to determine whether the latent variable is actually being used.
-
-### 2. Increasing beta suppresses latent usage
-
-![Beta trends](figs/fig2_beta_trends.png)
-
-As beta increases, both rate and MI proxy decrease, and latent interventions have weaker effect on reconstruction.
-
-### 3. Target-rate helps prevent collapse
-
-![Target rate](figs/fig3_target_rate.png)
-
-The target-rate objective keeps the model away from collapse by enforcing nonzero rate.
-
-### 4. KL can be misleading
-
-![Constant encoder controls](figs/fig4_constant_encoder_controls.png)
-
-In constant-encoder controls, the encoder is independent of x by construction.
-These runs show that KL / rate can be large even when the latent carries essentially no information about the input.
-
-### Representative qualitative examples
-
-| Setting | Reconstruction / intervention |
-|---|---|
-| Low-MI beta run | ![](figs/beta_low_mi_recon.png) |
-| High-MI beta run | ![](figs/beta_high_mi_recon.png) |
-| Target-rate run | ![](figs/target_rate_recon.png) |
-
-
+The figures below summarize the main empirical claims of the repository.
 
 ---
 
+## 1. Similar loss can hide very different latent usage
 
+![Validation loss versus MI proxy](../figs/fig1_val_loss_vs_mi.png)
 
-# Posterior collapse implementation part 2: numerical results and figures
+This figure is the main warning against using ELBO or validation loss alone as a diagnostic for posterior collapse. Each point corresponds to a trained model, and the horizontal axis records validation loss while the vertical axis records the MI proxy.
 
-This guide is the clean way to turn your existing training outputs into paper-ready numerical evidence.
+The key observation is that runs with similar validation loss can still have noticeably different MI proxy values. In other words, two models may appear equally good according to the usual VAE objective, while using the latent variable in very different ways.
 
-## What each existing script already gives you
+This supports the central claim of the repository: low loss does not by itself imply that the latent representation is informative.
 
-`train_the_models.py` runs a beta sweep over selected `beta` values and seeds, records validation loss, distortion, rate, MI proxy, latent spread, decoder sensitivity, intervention metrics, and prior-generation diagnostics, then saves both per-run histories and a final `summary_across_betas.csv`.
+---
 
-`train_target_rate_models.py` runs the target-rate objective over chosen target rates, penalties, and seeds, records validation loss, distortion, rate, MI proxy, decoder sensitivities, and intervention metrics, then saves a final `summary.csv`.
+## 2. Increasing beta suppresses latent usage
 
-`run_constant_encoder_controls.py` builds the two key control cases `collapse_kl_zero` and `collapse_kl_large` using the constant encoder, trains only the decoder, and saves per-epoch statistics plus qualitative grids.
+![Beta trends](../figs/fig2_beta_trends.png)
 
-The MI / rate / prior-mismatch decomposition and the latent-intervention diagnostics are already implemented in `diagnostics2.py`. In particular, `approx_rate_mi_mismatch_decomposition` returns `rate_proxy`, `mi_proxy`, and `prior_mismatch_proxy`, and `latent_intervention_metrics` measures the effect of zeroing, shuffling, or perturbing the latent.
+This plot summarizes how the main diagnostics change across the beta sweep.
 
-Your pair-finding utility in `compare_runs.py` is already set up to identify runs with similar validation loss but meaningfully different MI, using relative loss difference plus both relative and absolute MI gaps.
+As beta increases, the validation rate and the MI proxy tend to decrease. At the same time, the effect of intervening on the latent variable also weakens. This is consistent with the standard picture of posterior collapse: stronger pressure toward the prior makes it easier for the decoder to ignore the latent code.
 
-## The strongest claims you can support
+So this figure should be read as the main trend plot: larger beta pushes the model toward weaker latent usage.
 
-1. **Loss alone does not tell you whether the latent is being used.**  
-   Use the beta-sweep summary together with `compare_runs.py` to identify same- or near-same-loss runs with different `mi_proxy`.
+---
 
-2. **Increasing `beta` pushes the model toward collapse.**  
-   Show that `val_rate`, `mi_proxy`, and intervention sensitivity shrink as `beta` increases.
+## 3. Mutual information and intervention sensitivity are aligned
 
-3. **Target-rate training keeps the model away from collapse by enforcing nonzero rate.**  
-   Compare achieved `val_rate` and `mi_proxy` across target rates.
+![MI proxy versus intervention effect](../figs/fig3_mi_vs_intervention.png)
 
-4. **KL / rate is not the same thing as information usage.**  
-   The constant-encoder controls prove this cleanly: when `q(z|x)` is independent of `x`, the model can still have large rate due to prior mismatch, even though it is not transmitting information about the input.
+This figure compares the MI proxy with the reconstruction penalty incurred after modifying the latent variable.
 
-## Exact figure set to produce
+The interpretation is simple: if the decoder is genuinely using the latent code, then changing or zeroing that code should noticeably worsen reconstruction. If the decoder is largely ignoring the latent code, then the reconstruction should change much less.
 
-Use `make_part2_figures.py` after your three training scripts finish.
+Accordingly, runs with larger MI proxy also tend to show stronger intervention effects. This provides an additional empirical check that the MI proxy is tracking meaningful latent usage rather than just numerical noise.
 
-It generates:
+---
 
-- `fig1_val_loss_vs_mi.png`
-- `fig2_beta_trends.png`
-- `fig3_mi_vs_intervention.png`
-- `fig4_target_rate_results.png`
-- `fig5_constant_encoder_controls.png`
-- compact summary tables
-- a curated folder of representative qualitative grids copied from the original run directories
-- a text file with suggested captions / claim mapping
+## 4. Target-rate training helps prevent collapse
 
-## Suggested main-text narrative
+![Target-rate results](../figs/fig4_target_rate_results.png)
 
-A compact sequence is:
+This figure summarizes the target-rate experiments.
 
-- first show `fig1_val_loss_vs_mi.png` as the core contradiction to “low loss means healthy latent usage”;
-- then `fig2_beta_trends.png` to show the collapse trend under larger `beta`;
-- then `fig4_target_rate_results.png` to show how target-rate avoids that degeneration;
-- finally `fig5_constant_encoder_controls.png` to make the conceptual point that KL can be high even when the encoder carries no information about `x`.
+The target-rate objective explicitly penalizes deviation from a prescribed nonzero rate. Empirically, this keeps the model away from the fully collapsed regime more effectively than a plain beta-VAE objective. The achieved validation rate remains nontrivial, and the MI proxy also stays away from zero.
 
-## Minimal workflow
+This is the main positive result of the project: target-rate training provides a practical mechanism for preserving latent usage.
 
-```bash
-python train_the_models.py
-python train_target_rate_models.py
-python run_constant_encoder_controls.py
-python make_part2_figures.py
+---
+
+## 5. KL alone can be misleading
+
+![Constant-encoder controls](../figs/fig5_constant_encoder_controls.png)
+
+This figure shows the constant-encoder control experiments.
+
+These controls are designed so that the encoder is independent of the input. Therefore, the latent variable is not actually carrying meaningful information about \(x\). Nevertheless, the KL or rate term can still become large because of mismatch between the aggregated posterior and the prior.
+
+This is conceptually important: a large KL term is not automatically evidence that the latent representation is informative. It may reflect prior mismatch rather than true information flow from input to latent.
+
+---
+
+## Representative Qualitative Examples
+
+### Low-MI beta run
+
+![Low-MI reconstruction grid](../figs/beta_low_mi_recon_grid.png)
+
+This reconstruction grid comes from a beta-run with relatively weak latent usage. The reconstructions may still look reasonable, but the quantitative diagnostics indicate that the latent variable is playing a limited role.
+
+![Low-MI latent interventions](../figs/beta_low_mi_latent_interventions.png)
+
+The intervention plot shows that modifying the latent code has a comparatively smaller effect, which is consistent with partial or near collapse.
+
+---
+
+### High-MI beta run
+
+![High-MI reconstruction grid](../figs/beta_high_mi_recon_grid.png)
+
+This reconstruction grid comes from a beta-run with stronger latent usage.
+
+![High-MI latent interventions](../figs/beta_high_mi_latent_interventions.png)
+
+Here the effect of intervening on the latent code is more substantial. This is consistent with the larger MI proxy and supports the interpretation that this model is using the latent variable more meaningfully.
+
+---
+
+### Target-rate run
+
+![Target-rate reconstruction grid](../figs/target_rate4_recon_grid.png)
+
+This example illustrates a representative target-rate model.
+
+![Target-rate interventions](../figs/target_rate4_interventions.png)
+
+The main point is that the target-rate objective preserves a visibly active latent space while maintaining good reconstructions. Qualitatively and quantitatively, this is the intended contrast with collapse-prone beta-only training.
+
+---
+
+## Constant-Encoder Counterexamples
+
+### Collapse with near-zero KL
+
+![Collapse with near-zero KL](../figs/collapse_kl_zero_recon_grid.png)
+
+This control corresponds to a degenerate setting where the encoder is constant and the KL remains small. It is a useful sanity check: low KL is compatible with collapse, which is the usual textbook warning.
+
+### Collapse with large KL
+
+![Collapse with large KL](../figs/collapse_kl_large_recon_grid.png)
+
+This control is the more interesting counterexample. The encoder is still independent of the input, so the latent code is not informative, yet the KL can be large. This shows that large KL is not sufficient evidence of meaningful latent usage.
+
+---
+
+## Summary
+
+The numerical experiments support four main conclusions:
+
+1. Similar ELBO or validation-loss values do not guarantee similar latent usage.
+2. Increasing beta tends to suppress both rate and mutual information.
+3. Target-rate training helps keep the model away from collapse by enforcing nonzero rate.
+4. KL alone is not a reliable proxy for how much information the latent variable carries about the input.

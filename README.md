@@ -50,6 +50,16 @@ which penalizes collapse toward zero rate and helps preserve nontrivial latent u
 ------------------------------------------------------------
 
 
+
+## Mathematical explanation
+The `notes/` folder contains a brief discussion of the mathematical heuristics behind why the target-rate objective tends to discourage latent collapse in generative models, with vanilla VAEs as the main working paradigm.
+
+
+
+------------------------------------------------------------
+
+
+
 ## Numerical Results
 
 

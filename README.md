@@ -2,8 +2,7 @@
 
 This repository is a practical implementation of the ideas in *Fixing a Broken ELBO (Alemi et al., ICML 2018)* [[1]](#1). It shows that ELBO / $\beta$-VAE losses alone do not tell us whether the latent variable is actually being used, and that a target-rate objective can force the model away from posterior collapse by selecting solutions with nonzero rate.
 
----------------------------------------------------------------------------------------
-
+---
 
 The central question is not only whether the KL term becomes small, but whether the latent variable $z$ actually carries information about the input $x$.
 
@@ -47,7 +46,7 @@ which penalizes collapse toward zero rate and helps preserve nontrivial latent u
 
 
 
-------------------------------------------------------------
+---
 
 
 
@@ -56,7 +55,7 @@ The `notes/` folder contains a brief discussion of the mathematical heuristics b
 
 
 
-------------------------------------------------------------
+---
 
 
 
@@ -64,7 +63,7 @@ The `notes/` folder contains a brief discussion of the mathematical heuristics b
 
 
 
-------------------------------------------------------------
+---
 
 
 

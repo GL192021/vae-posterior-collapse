@@ -1,3 +1,48 @@
+# Numerical Results
+
+We evaluate posterior collapse using four complementary diagnostics:
+validation loss, rate, MI proxy, and latent-intervention sensitivity.
+
+### 1. Similar loss can hide different latent usage
+
+![Loss vs MI](assets/results/fig1_loss_vs_mi.png)
+
+Runs with nearly equal validation loss can still have substantially different MI proxy.
+This shows that ELBO / validation loss alone is not enough to determine whether the latent variable is actually being used.
+
+### 2. Increasing beta suppresses latent usage
+
+![Beta trends](assets/results/fig2_beta_trends.png)
+
+As beta increases, both rate and MI proxy decrease, and latent interventions have weaker effect on reconstruction.
+
+### 3. Target-rate helps prevent collapse
+
+![Target rate](assets/results/fig3_target_rate.png)
+
+The target-rate objective keeps the model away from collapse by enforcing nonzero rate.
+
+### 4. KL can be misleading
+
+![Constant encoder controls](assets/results/fig4_constant_encoder_controls.png)
+
+In constant-encoder controls, the encoder is independent of x by construction.
+These runs show that KL / rate can be large even when the latent carries essentially no information about the input.
+
+### Representative qualitative examples
+
+| Setting | Reconstruction / intervention |
+|---|---|
+| Low-MI beta run | ![](assets/results/beta_low_mi_recon.png) |
+| High-MI beta run | ![](assets/results/beta_high_mi_recon.png) |
+| Target-rate run | ![](assets/results/target_rate_recon.png) |
+
+
+
+---
+
+
+
 # Posterior collapse implementation part 2: numerical results and figures
 
 This guide is the clean way to turn your existing training outputs into paper-ready numerical evidence.

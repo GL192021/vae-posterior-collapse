@@ -1,6 +1,6 @@
 # VAE Posterior Collapse: Rate, Distortion, and Latent Information
 
-This repository is a practical implementation of the ideas in *Fixing a Broken ELBO (Alemi et al., ICML 2018)* [[1]](#1). It shows that ELBO / $\beta$-VAE losses alone do not tell us whether the latent variable is actually being used, and that a target-rate objective can force the model away from posterior collapse by selecting solutions with nonzero rate.
+This repository is a practical implementation of the ideas in *Fixing a Broken ELBO (Alemi et al., ICML 2018)* [[1]](#1). It shows that ELBO / $\beta$-VAE losses alone do not tell us whether the latent variable is actually being used, and that a *target-rate objective* can force the model away from posterior collapse by selecting solutions with nonzero rate.
 
 ---
 

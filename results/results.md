@@ -5,7 +5,7 @@ validation loss, rate, MI proxy, and latent-intervention sensitivity.
 
 ### 1. Similar loss can hide different latent usage
 
-![Loss vs MI](figs/fig1_val_loss_vs_mi.png)
+![Loss vs MI](figs/fig1_val_loss_vs_mi.png) 
 
 Runs with nearly equal validation loss can still have substantially different MI proxy.
 This shows that ELBO / validation loss alone is not enough to determine whether the latent variable is actually being used.

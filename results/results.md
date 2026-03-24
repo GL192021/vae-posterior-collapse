@@ -5,20 +5,20 @@ validation loss, rate, MI proxy, and latent-intervention sensitivity.
 
 ### 1. Similar loss can hide different latent usage
 
-![Loss vs MI](assets/results/fig1_loss_vs_mi.png)
+![Loss vs MI](assets/experiment_results/fig1_loss_vs_mi.png)
 
 Runs with nearly equal validation loss can still have substantially different MI proxy.
 This shows that ELBO / validation loss alone is not enough to determine whether the latent variable is actually being used.
 
 ### 2. Increasing beta suppresses latent usage
 
-![Beta trends](assets/results/fig2_beta_trends.png)
+![Beta trends](assets/experiment_results/fig2_beta_trends.png)
 
 As beta increases, both rate and MI proxy decrease, and latent interventions have weaker effect on reconstruction.
 
 ### 3. Target-rate helps prevent collapse
 
-![Target rate](assets/results/fig3_target_rate.png)
+![Target rate](assets/experiment_results/fig3_target_rate.png)
 
 The target-rate objective keeps the model away from collapse by enforcing nonzero rate.
 
@@ -33,9 +33,9 @@ These runs show that KL / rate can be large even when the latent carries essenti
 
 | Setting | Reconstruction / intervention |
 |---|---|
-| Low-MI beta run | ![](assets/results/beta_low_mi_recon.png) |
-| High-MI beta run | ![](assets/results/beta_high_mi_recon.png) |
-| Target-rate run | ![](assets/results/target_rate_recon.png) |
+| Low-MI beta run | ![](assets/experiment_results/beta_low_mi_recon.png) |
+| High-MI beta run | ![](assets/experiment_results/beta_high_mi_recon.png) |
+| Target-rate run | ![](assets/experiment_results/target_rate_recon.png) |
 
 
 

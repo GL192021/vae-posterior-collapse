@@ -1,38 +1,53 @@
-## Numerical Results
+---
+title: "Numerical Results"
+format:
+  html:
+    toc: true
+    number-sections: true
+    theme: cosmo
+---
 
-We evaluate posterior collapse using four complementary diagnostics:
-validation loss, rate, MI proxy, and latent-intervention sensitivity.
+# Numerical Results
 
-### 1. Similar loss can hide different latent usage
+We evaluate posterior collapse using four complementary diagnostics: validation loss, rate, MI proxy, and latent-intervention sensitivity.
+
+## Similar loss can hide different latent usage
 
 ![Loss vs MI](assets/results/fig1_loss_vs_mi.png)
 
-Runs with nearly equal validation loss can still have substantially different MI proxy.
-This shows that ELBO / validation loss alone is not enough to determine whether the latent variable is actually being used.
+Runs with nearly equal validation loss can still have substantially different MI proxy. This shows that ELBO / validation loss alone is not enough to determine whether the latent variable is actually being used.
 
-### 2. Increasing beta suppresses latent usage
+## Increasing beta suppresses latent usage
 
 ![Beta trends](assets/results/fig2_beta_trends.png)
 
 As beta increases, both rate and MI proxy decrease, and latent interventions have weaker effect on reconstruction.
 
-### 3. Target-rate helps prevent collapse
+## Target-rate helps prevent collapse
 
 ![Target rate](assets/results/fig3_target_rate.png)
 
 The target-rate objective keeps the model away from collapse by enforcing nonzero rate.
 
-### 4. KL can be misleading
+## KL can be misleading
 
 ![Constant encoder controls](assets/results/fig4_constant_encoder_controls.png)
 
-In constant-encoder controls, the encoder is independent of x by construction.
-These runs show that KL / rate can be large even when the latent carries essentially no information about the input.
+In constant-encoder controls, the encoder is independent of $x$ by construction. These runs show that KL / rate can be large even when the latent carries essentially no information about the input.
 
-### Representative qualitative examples
+## Representative qualitative examples
 
 | Setting | Reconstruction / intervention |
 |---|---|
 | Low-MI beta run | ![](assets/results/beta_low_mi_recon.png) |
 | High-MI beta run | ![](assets/results/beta_high_mi_recon.png) |
 | Target-rate run | ![](assets/results/target_rate_recon.png) |
+
+## Summary
+
+The experiments support four main conclusions:
+
+1. Similar ELBO values do not guarantee similar latent usage.
+2. Increasing $\beta$ tends to suppress rate and mutual information.
+3. Target-rate training can maintain nonzero latent usage.
+4. KL alone is not a reliable proxy for information carried by the latent variable.

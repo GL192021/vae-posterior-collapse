@@ -37,7 +37,7 @@ This of course can occure by a prior aggregated posterior mismatch (as we shall 
 | $\beta=11$ | 4.88   | 53.68 | 185 |
 | $\beta=15$ | 0.645 | 9.67   | 199 |
 
-More schematically
+More schematically we can see indeed that the the aggregated posterior and the prior are in fact aligned in both cases.
 
 ![prior vs post beta=11](../figs/prior_vs_post__11.png)
 ![prior vs post beta=15](../figs/prior_vs_post__15.png)

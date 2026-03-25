@@ -19,10 +19,10 @@ The figures below summarize the main empirical claims of the repository.
 
 ### Agg Table
 
-  Comparison Table      |       Total Loss                |      Mutual Information                  |
-  ----------------------| --------------------------------|------------------------------------------|
-      $\beta=11$        | 185                             | 4.86                                     |
-      $\beta=15$        | 199                             | 0.629                                    |
+| Comparison Table | Total Loss | Mutual Information |
+|---|---:|---:|
+| $\beta=11$ | 185 | 4.86 |
+| $\beta=15$ | 199 | 0.629 |
 
 
 

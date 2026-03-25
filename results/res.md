@@ -8,6 +8,7 @@ The figures below summarize the main empirical claims of the repository.
 
 ## 1. Similar loss can hide very different latent usage
 
+### Mutual Information
 The table below demostrates how different values of $\beta$, seeminlgy producing similar models, can in fact have very different latent encoding quality; compare with the discussion in [[1]](#1).
 
 | Comparison Table | Total Loss | Mutual Information |
@@ -23,8 +24,13 @@ The two models produce comparable total $\beta$-losses:
 On the other hand the mututal information---and thus the latent ussage---drastically changes:
 - From $\beta=15$ to $\beta=11$, the mutual information increases from 0.629 to 4.86, i.e. by about 4.23 units, or approximately 672.7\%. Equivalently, it is about 7.73 times larger at $\beta=11$.
 
-                    
+### Quality of latent encoding
+So similar models, in the sense of $\beta$-losses, can actually differ drastically. In the extremes, this difference can be manifested as no-collapse versus collapse. An indicator of collapsing (i.e. usage of latent space), is that the generative aspect of the model performs very poorly. 
+![MI proxy versus intervention effect](../figs/prior_samples_11.0.png)
+![MI proxy versus intervention effect](../figs/prior_samples_15.0.png)
 
+
+This of course can occure by a prior aggregated posterior mismatch, therefore we 
 
 ---
 

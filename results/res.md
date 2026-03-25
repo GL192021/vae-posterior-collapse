@@ -7,33 +7,52 @@ The figures below summarize the main empirical claims of the repository.
 ---
 
 ## 1. Similar loss can hide very different latent usage
-The same model trained with the 
 
-![Sampling from prior for $\beta=8.0$](../figs/prior_samples_8.0.png)         ![Sampling from prior for $\beta=11.0$](../figs/prior_samples_11.0.png)
+
+![Sampling from prior for $\beta=11.0$](../figs/prior_samples_11.0.png)
 
 ![Sampling from prior for $\beta=15.0$](../figs/prior_samples_18.0.png)
 
-This figure is the main warning against using ELBO or validation loss alone as a diagnostic for posterior collapse. Each point corresponds to a trained model, and the horizontal axis records validation loss while the vertical axis records the MI proxy.
-
-The key observation is that runs with similar validation loss can still have noticeably different MI proxy values. In other words, two models may appear equally good according to the usual VAE objective, while using the latent variable in very different ways.
-
-This supports the central claim of the repository: low loss does not by itself imply that the latent representation is informative.
 
 ---
 
-## 2. Increasing beta suppresses latent usage
+# Source - https://stackoverflow.com/a/69399550
+# Posted by sgdata
+# Retrieved 2026-03-25, License - CC BY-SA 4.0
 
-![Beta trends](../figs/fig2_beta_trends.png)
+{% docs agg_table %}
 
-This plot summarizes how the main diagnostics change across the beta sweep.
+### Agg Table
 
-As beta increases, the validation rate and the MI proxy tend to decrease. At the same time, the effect of intervening on the latent variable also weakens. This is consistent with the standard picture of posterior collapse: stronger pressure toward the prior makes it easier for the decoder to ignore the latent code.
-
-So this figure should be read as the main trend plot: larger beta pushes the model toward weaker latent usage.
+| COLUMN\_NAME                   | DESCRIPTION                                                                   |
+| ------------------------------ | ----------------------------------------------------------------------------- |
+| table_item_1                   | {{ docs("table_item_1") }}                                                  |
+| table_item_2                   | {{ docs("table_item_2") }}                                                  |
+| table_item_3                   | {{ docs("table_item_3") }}                                                  |
+| table_item_4                   | {{ docs("table_item_4") }}                                                  |
+                    
+{% enddocs %}
 
 ---
+# Source - https://stackoverflow.com/a/69399550
+# Posted by sgdata
+# Retrieved 2026-03-25, License - CC BY-SA 4.0
 
-## 3. Mutual information and intervention sensitivity are aligned
+{% docs agg_table %}
+
+### Agg Table
+
+| COLUMN\_NAME                   | DESCRIPTION                                                                              |
+| ------------------------------ | ---------------------------------------------------------------------------------------- |
+| table_item_1                   | [first_model_description](#!/model/model.my_new_project.my_first_dbt_model#description)  |
+| table_item_2                   | [first_model_columns](#!/model/model.my_new_project.my_first_dbt_model#columns)          |
+| table_item_3                   | [table_item_doc](#!/docs/docs.my_new_project.table_item_3)                               |
+| table_item_4                   | [table_item_doc](#!/docs/docs.my_new_project.table_item_4#description)                   |
+                    
+
+{% enddocs %}
+
+---
 
 ![MI proxy versus intervention effect](../figs/fig3_mi_vs_intervention.png)
 

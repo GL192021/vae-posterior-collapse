@@ -8,6 +8,8 @@ The figures below summarize the main empirical claims of the repository.
 
 ## 1. Similar loss can hide very different latent usage
 
+![Sampling from prior for $\beta=8.0$](../figs/prior_samples_8.0.png)
+
 ![Sampling from prior for $\beta=11.0$](../figs/prior_samples_11.0.png)
 
 ![Sampling from prior for $\beta=15.0$](../figs/prior_samples_18.0.png)

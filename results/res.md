@@ -26,10 +26,10 @@ The figures below summarize the main empirical claims of the repository.
 
 | COLUMN\_NAME                   | DESCRIPTION                                                                   |
 | ------------------------------ | ----------------------------------------------------------------------------- |
-| table_item_1                   | {{ docs("table_item_1") }}                                                  |
-| table_item_2                   | {{ docs("table_item_2") }}                                                  |
-| table_item_3                   | {{ docs("table_item_3") }}                                                  |
-| table_item_4                   | {{ docs("table_item_4") }}                                                  |
+| table_item_1                   | 185                                                 |
+| table_item_2                   | 200                                                 |
+| table_item_3                   | 4.86                                                |
+| table_item_4                   | 0.629                                               |
                     
 {% enddocs %}
 

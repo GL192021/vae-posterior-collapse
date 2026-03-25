@@ -39,13 +39,13 @@ This of course can occure by a prior aggregated posterior mismatch (as we shall 
 
 
 
-## 3. KL alone can be misleading
+## 2. KL alone can be misleading
 
 
 ---
 
 
-## Constant-Encoder Counterexamples
+## 3. Constant-Encoder Counterexamples
 
 ### Collapse with near-zero KL
 
@@ -61,7 +61,7 @@ This control is the more interesting counterexample. The encoder is still indepe
 
 ---
 
-## Target-rate run
+## 4. Target-rate run
 
 
 

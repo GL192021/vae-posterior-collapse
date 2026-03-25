@@ -8,22 +8,14 @@ The figures below summarize the main empirical claims of the repository.
 
 ## 1. Similar loss can hide very different latent usage
 
-
-![Sampling from prior for $\beta=11.0$](../figs/prior_samples_11.0.png)
-
-![Sampling from prior for $\beta=15.0$](../figs/prior_samples_18.0.png)
-
-
----
-
-
-### Agg Table
+The table below demostrates how different values of $\beta$, seeminlgy producing similar models, can in fact have very different latent encoding quality.
 
 | Comparison Table | Total Loss | Mutual Information |
 |---|---:|---:|
 | $\beta=11$ | 185 | 4.86 |
 | $\beta=15$ | 199 | 0.629 |
 
+Even though the two models produce comparable total $\beta$-losses ($~7.6\%$ increase from $\beta=11$ to $\beta=15$), the mututal information--and thus the latent ussage--drastically changes ($\sim 87.1\%$ decrease)
 
 
                     

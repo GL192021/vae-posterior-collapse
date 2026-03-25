@@ -8,7 +8,7 @@ The figures below summarize the main empirical claims of the repository.
 
 ## 1. Similar loss can hide very different latent usage
 
-![Validation loss versus MI proxy](../figs/fig1_val_loss_vs_mi.png)
+![Validation loss versus MI proxy](../figs/prior_samples_11.0.png)
 
 This figure is the main warning against using ELBO or validation loss alone as a diagnostic for posterior collapse. Each point corresponds to a trained model, and the horizontal axis records validation loss while the vertical axis records the MI proxy.
 

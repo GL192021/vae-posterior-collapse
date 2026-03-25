@@ -51,11 +51,9 @@ The line
 
 ## 2. KL alone can be misleading
 
+The above discussion might be an indicator that in order to avoid posterior collapse, we only need to keep the KL term (relatively) high. As we shall see, that does not always solve the problem.
 
----
-
-
-## 3. Constant-Encoder Counterexamples
+To demostrate what could potentially go wrong, even with keeping the KL term waway from zero, we will implement some controloed counter examples using a Constant-Encoder.
 
 ### Collapse with near-zero KL
 

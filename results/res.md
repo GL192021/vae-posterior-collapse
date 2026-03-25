@@ -9,6 +9,7 @@ The figures below summarize the main empirical claims of the repository.
 ## 1. Similar loss can hide very different latent usage
 
 ![Sampling from prior for $\beta=11.0$](../figs/prior_samples_11.0.png)
+
 ![Sampling from prior for $\beta=15.0$](../figs/prior_samples_15.0.png)
 
 This figure is the main warning against using ELBO or validation loss alone as a diagnostic for posterior collapse. Each point corresponds to a trained model, and the horizontal axis records validation loss while the vertical axis records the MI proxy.

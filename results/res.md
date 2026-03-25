@@ -30,10 +30,20 @@ So similar models, in the sense of $\beta$-losses, can actually differ drastical
 ![gneration/sampling from prior beta=15](../figs/prior_samples_15.0.png)
 
 
-This of course can occure by a prior aggregated posterior mismatch (as we shall see below), therefore we will further investigate the latent usage. For starters, we notice that we do not have a case of mismatch in our examples
+This of course can occure by a prior aggregated posterior mismatch (as we shall see below), therefore we will further investigate the latent usage. For starters, we notice that we do not have a case of mismatch in our examples.
+
+| Comparison Table | KL Loss | $\beta \times$ KL loss | Total Loss
+|---|---:|---:|
+| $\beta=11$ | 4.88   | 53.68 | 185
+| $\beta=15$ | 0.645 | 9.67   | 199
+
+More schematically
 
 ![prior vs post beta=11](../figs/prior_vs_post__11.png)
 ![prior vs post beta=15](../figs/prior_vs_post__15.png)
+
+
+The line 
 
 ---
 

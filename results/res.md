@@ -25,86 +25,25 @@ On the other hand the mututal information---and thus the latent ussage---drastic
 - From $\beta=15$ to $\beta=11$, the mutual information increases from 0.629 to 4.86, i.e. by about 4.23 units, or approximately 672.7\%. Equivalently, it is about 7.73 times larger at $\beta=11$.
 
 ### Quality of latent encoding
-So similar models, in the sense of $\beta$-losses, can actually differ drastically. In the extremes, this difference can be manifested as no-collapse versus collapse. An indicator of collapsing (i.e. usage of latent space), is that the generative aspect of the model performs very poorly. 
-![MI proxy versus intervention effect](../figs/prior_samples_11.0.png)
-![MI proxy versus intervention effect](../figs/prior_samples_15.0.png)
+So similar models, in the sense of $\beta$-losses, can actually differ drastically. In the extremes, this difference can be manifested as no-collapse versus collapse. An indicator of collapsing (i.e. usage of latent space), is that the generative aspect of the model performs very poorly, as sampling from the prior is meaningless, since the model does not utilize the latent space. 
+![gneration/sampling from prior beta=11](../figs/prior_samples_11.0.png)
+![gneration/sampling from prior beta=15](../figs/prior_samples_15.0.png)
 
 
-This of course can occure by a prior aggregated posterior mismatch, therefore we 
+This of course can occure by a prior aggregated posterior mismatch (as we shall see below), therefore we will further investigate the latent usage. For starters, we notice that we do not have a case of mismatch in our examples
 
----
-
-![MI proxy versus intervention effect](../figs/fig3_mi_vs_intervention.png)
-
-This figure compares the MI proxy with the reconstruction penalty incurred after modifying the latent variable.
-
-The interpretation is simple: if the decoder is genuinely using the latent code, then changing or zeroing that code should noticeably worsen reconstruction. If the decoder is largely ignoring the latent code, then the reconstruction should change much less.
-
-Accordingly, runs with larger MI proxy also tend to show stronger intervention effects. This provides an additional empirical check that the MI proxy is tracking meaningful latent usage rather than just numerical noise.
+![prior vs post beta=11](../figs/prior_vs_post__11.png)
+![prior vs post beta=15](../figs/prior_vs_post__15.png)
 
 ---
 
-## 4. Target-rate training helps prevent collapse
 
-![Target-rate results](../figs/fig4_target_rate_results.png)
 
-This figure summarizes the target-rate experiments.
+## 3. KL alone can be misleading
 
-The target-rate objective explicitly penalizes deviation from a prescribed nonzero rate. Empirically, this keeps the model away from the fully collapsed regime more effectively than a plain beta-VAE objective. The achieved validation rate remains nontrivial, and the MI proxy also stays away from zero.
-
-This is the main positive result of the project: target-rate training provides a practical mechanism for preserving latent usage.
 
 ---
 
-## 5. KL alone can be misleading
-
-![Constant-encoder controls](../figs/fig5_constant_encoder_controls.png)
-
-This figure shows the constant-encoder control experiments.
-
-These controls are designed so that the encoder is independent of the input. Therefore, the latent variable is not actually carrying meaningful information about \(x\). Nevertheless, the KL or rate term can still become large because of mismatch between the aggregated posterior and the prior.
-
-This is conceptually important: a large KL term is not automatically evidence that the latent representation is informative. It may reflect prior mismatch rather than true information flow from input to latent.
-
----
-
-## Representative Qualitative Examples
-
-### Low-MI beta run
-
-![Low-MI reconstruction grid](../figs/beta_low_mi_recon_grid.png)
-
-This reconstruction grid comes from a beta-run with relatively weak latent usage. The reconstructions may still look reasonable, but the quantitative diagnostics indicate that the latent variable is playing a limited role.
-
-![Low-MI latent interventions](../figs/beta_low_mi_latent_interventions.png)
-
-The intervention plot shows that modifying the latent code has a comparatively smaller effect, which is consistent with partial or near collapse.
-
----
-
-### High-MI beta run
-
-![High-MI reconstruction grid](../figs/prior_samples_11.0.png)
-
-This reconstruction grid comes from a beta-run with stronger latent usage.
-
-![High-MI latent interventions](../figs/beta_high_mi_latent_interventions.png)
-
-Here the effect of intervening on the latent code is more substantial. This is consistent with the larger MI proxy and supports the interpretation that this model is using the latent variable more meaningfully.
-
----
-
-### Target-rate run
-
-![Target-rate reconstruction grid](../figs/target_rate4_recon_grid.png)
-
-This example illustrates a representative target-rate model.
-
-![Target-rate interventions](../figs/target_rate4_interventions.png)
-
-The main point is that the target-rate objective preserves a visibly active latent space while maintaining good reconstructions. Qualitatively and quantitatively, this is the intended contrast with collapse-prone beta-only training.
-
----
 
 ## Constant-Encoder Counterexamples
 
@@ -122,14 +61,21 @@ This control is the more interesting counterexample. The encoder is still indepe
 
 ---
 
+## Target-rate run
+
+
+
+The main point is that the target-rate objective preserves a visibly active latent space while maintaining good reconstructions. Qualitatively and quantitatively, this is the intended contrast with collapse-prone beta-only training.
+
+---
+
 ## Summary
 
 The numerical experiments support four main conclusions:
 
 1. Similar ELBO or validation-loss values do not guarantee similar latent usage.
-2. Increasing beta tends to suppress both rate and mutual information.
-3. Target-rate training helps keep the model away from collapse by enforcing nonzero rate.
-4. KL alone is not a reliable proxy for how much information the latent variable carries about the input.
+2. Target-rate training helps keep the model away from collapse.
+3. KL alone is not a reliable proxy for how much information the latent variable carries about the input.
 
 
 ## References

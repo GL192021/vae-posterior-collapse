@@ -16,41 +16,18 @@ The figures below summarize the main empirical claims of the repository.
 
 ---
 
-# Source - https://stackoverflow.com/a/69399550
-# Posted by sgdata
-# Retrieved 2026-03-25, License - CC BY-SA 4.0
-
-{% docs agg_table %}
 
 ### Agg Table
 
-| COLUMN\_NAME                   | DESCRIPTION                                                                   |
-| ------------------------------ | ----------------------------------------------------------------------------- |
-| table_item_1                   | 185                                                 |
-| table_item_2                   | 200                                                 |
-| table_item_3                   | 4.86                                                |
-| table_item_4                   | 0.629                                               |
-                    
-{% enddocs %}
+                        | $beta=11$                      | $beta=15$                                          |
+  ----------------------| ------------------------------ | ---------------------------------------------------|
+  Total Loss            | total loss = 185               | 185                                                |
+  Mutual Information    | $beta = 15.0$                  | 200                                                |
 
----
-# Source - https://stackoverflow.com/a/69399550
-# Posted by sgdata
-# Retrieved 2026-03-25, License - CC BY-SA 4.0
 
-{% docs agg_table %}
 
-### Agg Table
-
-| COLUMN\_NAME                   | DESCRIPTION                                                                              |
-| ------------------------------ | ---------------------------------------------------------------------------------------- |
-| table_item_1                   | [first_model_description](#!/model/model.my_new_project.my_first_dbt_model#description)  |
-| table_item_2                   | [first_model_columns](#!/model/model.my_new_project.my_first_dbt_model#columns)          |
-| table_item_3                   | [table_item_doc](#!/docs/docs.my_new_project.table_item_3)                               |
-| table_item_4                   | [table_item_doc](#!/docs/docs.my_new_project.table_item_4#description)                   |
                     
 
-{% enddocs %}
 
 ---
 

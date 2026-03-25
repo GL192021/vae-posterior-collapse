@@ -15,7 +15,7 @@ The table below demostrates how different values of $\beta$, seeminlgy producing
 | $\beta=11$ | 185 | 4.86 |
 | $\beta=15$ | 199 | 0.629 |
 
-Even though the two models produce comparable total $\beta$-losses ($~7.6\%$ increase from $\beta=11$ to $\beta=15$), the mututal information--and thus the latent ussage--drastically changes ($\sim 87.1\%$ decrease)
+Even though the two models produce comparable total $\beta$-losses ($~7.6\%$ increase from $\beta=11$ to $\beta=15$), the mututal information--and thus the latent ussage--drastically changes ($\sim 87.1%$ decrease)
 
 
                     

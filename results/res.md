@@ -15,6 +15,8 @@ The table below demostrates how different values of $\beta$, seeminlgy producing
 | $\beta=11$ | 185 | 4.86 |
 | $\beta=15$ | 199 | 0.629 |
 
+The table above give a numerical example of this phenomenon. 
+
 The two models produce comparable total $\beta$-losses: 
 - From $\beta=15$ to $\beta=11$, the total loss decreases from 199 to 185, i.e. by 14 units, or approximately 7.0\%. Equivalently, it is about 1.08 times larger at $\beta=15$.
 - 

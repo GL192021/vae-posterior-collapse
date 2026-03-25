@@ -32,10 +32,10 @@ So similar models, in the sense of $\beta$-losses, can actually differ drastical
 
 This of course can occure by a prior aggregated posterior mismatch (as we shall see below), therefore we will further investigate the latent usage. For starters, we notice that we do not have a case of mismatch in our examples.
 
-| Comparison Table | KL Loss | $\beta \times$ KL loss | Total Loss
+| Comparison Table | KL Loss | $\beta \times$ KL loss | Total Loss |
 |---|---:|---:|
-| $\beta=11$ | 4.88   | 53.68 | 185
-| $\beta=15$ | 0.645 | 9.67   | 199
+| $\beta=11$ | 4.88   | 53.68 | 185 |
+| $\beta=15$ | 0.645 | 9.67   | 199 |
 
 More schematically
 

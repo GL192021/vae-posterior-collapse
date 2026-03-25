@@ -8,7 +8,7 @@ The figures below summarize the main empirical claims of the repository.
 
 ## 1. Similar loss can hide very different latent usage
 
-The table below demostrates how different values of $\beta$, seeminlgy producing similar models, can in fact have very different latent encoding quality.
+The table below demostrates how different values of $\beta$, seeminlgy producing similar models, can in fact have very different latent encoding quality; compare with the discussion in [[1]](#1).
 
 | Comparison Table | Total Loss | Mutual Information |
 |---|---:|---:|
@@ -17,6 +17,7 @@ The table below demostrates how different values of $\beta$, seeminlgy producing
 
 The two models produce comparable total $\beta$-losses: 
 - From $\beta=15$ to $\beta=11$, the total loss decreases from 199 to 185, i.e. by 14 units, or approximately 7.0\%. Equivalently, it is about 1.08 times larger at $\beta=15$.
+- 
 On the other hand the mututal information--and thus the latent ussage--drastically changes:
 - From $\beta=15$ to $\beta=11$, the mutual information increases from 0.629 to 4.86, i.e. by about 4.23 units, or approximately 672.7\%. Equivalently, it is about 7.73 times larger at $\beta=11$.
 
@@ -121,3 +122,10 @@ The numerical experiments support four main conclusions:
 2. Increasing beta tends to suppress both rate and mutual information.
 3. Target-rate training helps keep the model away from collapse by enforcing nonzero rate.
 4. KL alone is not a reliable proxy for how much information the latent variable carries about the input.
+
+
+## References
+<a id="1">[1]</a> 
+Alexander A. Alemi, Ben Poole, Ian Fischer, Joshua V. Dillon, Rif A. Saurous, and Kevin Murphy. 
+**Fixing a Broken ELBO**. 
+Proceedings of the 35th International Conference on Machine Learning (ICML), volume 80, pages 159–168, 2018.

@@ -31,7 +31,7 @@ So similar models, in the sense of $\beta$-losses, can actually differ drastical
 
 <figure>
   <img src="../figs/prior_samples_11.0.png" alt="">
-  <figcaption>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</figcaption>
+  <figcaption>sampling from prior beta=11.</figcaption>
 </figure>
 
 

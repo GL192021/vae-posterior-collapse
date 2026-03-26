@@ -26,8 +26,8 @@ On the other hand the mututal information---and thus the latent ussage---drastic
 
 ### Quality of latent encoding
 So similar models, in the sense of $\beta$-losses, can actually differ drastically. In the extremes, this difference can be manifested as no-collapse versus collapse. An indicator of collapsing (i.e. usage of latent space), is that the generative aspect of the model performs very poorly, as sampling from the prior is meaningless, since the model does not utilize the latent space. 
-![gneration/sampling from prior beta=11](../figs/prior_samples_11.0.png)*sampling from prior beta=11*
-![gneration/sampling from prior beta=15](../figs/prior_samples_15.0.png)*sampling from prior beta=15*
+![gneration/sampling from prior beta=11](../figs/prior_samples_11.0.png)*prior sampling beta=11*
+![gneration/sampling from prior beta=15](../figs/prior_samples_15.0.png)*prior sampling beta=15*
 
 
 This of course can occure by a prior aggregated posterior mismatch (as we shall see below), therefore we will further investigate the latent usage. For starters, we notice that we do not have a case of mismatch in our examples.

@@ -100,11 +100,11 @@ To demostrate what could potentially go wrong, even with keeping the KL term awa
 </p>
 
 <p align="center">
-  <img src="../figs/prior_vs_post__15.png" alt="Alt text" width="300"><br>
+  <img src="../figs/prior_vs_post__kl_large.png" alt="Alt text" width="300"><br>
 </p>
 
 <p align="center">
-  <img src="../figs/prior_vs_post__kl_large.png" alt="Alt text" width="250"><br>
+  <img src="../figs/latent_interventions__kl_large.png" alt="Alt text" width="250"><br>
   <em>latent quality.</em>
 </p>
 

@@ -102,15 +102,17 @@ This control is the more interesting counterexample. The encoder is still indepe
 </p>
 
 <p align="center">
-  <img src="../figs/prior_vs_post__kl_large.png" alt="Alt text" width="300"><br>
-</p>
-
-<p align="center">
   <img src="../figs/latent_interventions__kl_large.png" alt="Alt text" width="250"><br>
   <em>latent quality.</em>
 </p>
 
-It is clear that the quality of latent encoding is extremely low, and the only reson the KL term is non zero, is because of the extreme misalignment of the two distributions.
+The two figures above show that the quality of latent encoding is extremely low, leading to severe posterior collapse
+
+<p align="center">
+  <img src="../figs/prior_vs_post__kl_large.png" alt="Alt text" width="300"><br>
+</p>
+
+The final figure semonstrates, that the only reson the KL term is non zero, is because of the extreme misalignment of the two distributions. 
 
 
 ---

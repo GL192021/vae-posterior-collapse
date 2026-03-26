@@ -51,12 +51,10 @@ More schematically we can see indeed that the the aggregated posterior and the p
 
 <p align="center">
   <img src="../figs/prior_vs_post__11.png" alt="Alt text" width="300"><br>
-  <em>sampling from prior beta=11.</em>
 </p>
 
 <p align="center">
   <img src="../figs/prior_vs_post__15.png" alt="Alt text" width="300"><br>
-  <em>sampling from prior beta=11.</em>
 </p>
 
 

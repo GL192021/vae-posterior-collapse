@@ -59,7 +59,7 @@ The `notes/` folder contains a brief discussion of the mathematical heuristics b
 
 
 ## Numerical Results and Figures
-The file `results.md` int the `results/` folder contains the results of the current implementation together with figures demonstrating the main claims.
+The file `numerical_results.md` int the `results/` folder contains the results of the current implementation together with figures demonstrating the main claims.
 
 
 ---

@@ -29,10 +29,10 @@ So similar models, in the sense of $\beta$-losses, can actually differ drastical
 ![gneration/sampling from prior beta=11](../figs/prior_samples_11.0.png)
 ![gneration/sampling from prior beta=15](../figs/prior_samples_15.0.png)
 
-<figure>
-  <img src="../figs/prior_samples_11.0.png" alt="">
-  <figcaption>sampling from prior beta=11.</figcaption>
-</figure>
+<p align="center">
+  <img src="../figs/prior_samples_11.0.png" alt="Alt text" width="400"><br>
+  <em>This is the caption for the image.</em>
+</p>
 
 
 This of course can occure by a prior aggregated posterior mismatch (as we shall see below), therefore we will further investigate the latent usage. For starters, we notice that we do not have a case of mismatch in our examples.

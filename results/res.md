@@ -90,6 +90,8 @@ The above discussion might be an indicator that in order to avoid posterior coll
 
 To demostrate what could potentially go wrong, even with keeping the KL term away from zero, we will implement some controloed counter examples using a Constant-Encoder. In particular, we are going to see what o posterior collapse might look like with the KL term being (arbitrarily) large. 
 
+This control is the more interesting counterexample. The encoder is still independent of the input, so the latent code is not informative, yet the KL can be large. This shows that large KL is not sufficient evidence of meaningful latent usage.
+
 | Model | KL Loss | Total Loss | Mutual Information |
 |---|---:|---:|---:|
 | constant encoder with $\mathcal{N}(4,I)$ | 128   | 334 | 0 |
@@ -108,8 +110,8 @@ To demostrate what could potentially go wrong, even with keeping the KL term awa
   <em>latent quality.</em>
 </p>
 
+It is clear that the quality of latent encoding is extremely low, and the only reson the KL term is non zero, is because of the extreme misalignment of the two distributions.
 
-This control is the more interesting counterexample. The encoder is still independent of the input, so the latent code is not informative, yet the KL can be large. This shows that large KL is not sufficient evidence of meaningful latent usage.
 
 ---
 

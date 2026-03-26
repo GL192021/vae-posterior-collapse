@@ -127,11 +127,11 @@ We expand more on how optimizing this objective favors informative latent encodi
 |---|---:|---:|---:|
 | $\beta=11$ | 185 |  4.88 | 4.86 |
 | $\beta=15$ | 199 | 0.645 | 0.629 |
-| target-rate | 128 | 6.65 | 6.63 |
+| target-rate (r\*=4, λ=0.5) | 128 | 6.65 | 6.63 |
 
 **Note. **  In `notes/` it is also expalined how the mutual information, in the good scenario that we have maximal latent information, should be close to the rate (KL term). Though, as we see for the case $\beta=15$, the difference is small but the information capacity of the latent encoding is insufficient.
 
-We demonstrate the results of the corresponding experiments in this case
+The figures below illustrate the corresponding target-rate experiment.
 
 
 <p align="center">

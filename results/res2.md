@@ -2,7 +2,10 @@
 
 We evaluate posterior collapse using four complementary diagnostics: validation loss, rate, an approximate mutual-information proxy, and latent sensitivity.
 
-The figures below summarize the main empirical claims of the repository.
+Here we summarize the main empirical claims of the repository.
+
+**Remark.**  
+In the present MNIST experiments with relatively simple encoder/decoder architectures, we do not observe the sharpest form of posterior collapse, namely a regime in which reconstruction quality remains high while the latent variable is used only weakly or not at all. Such behavior is typically more pronounced when the decoder has enough expressive power to model the data while largely bypassing the latent representation. For this reason, the current experiments should be interpreted as demonstrating the diagnostic distinction between loss values, KL/rate, and actual latent usage, rather than as an exhaustive study of collapse under highly expressive decoders.
 
 ---
 
@@ -118,6 +121,20 @@ The final figure shows that the KL term is nonzero only because of the severe mi
 The main point of the target-rate objective is to enforce a nontrivial information budget directly, rather than hoping that a suitable choice of $\beta$ will implicitly do so. In our experiments, the target-rate run preserves a visibly active latent space while maintaining good reconstructions. Both qualitatively and quantitatively, this is the intended contrast with collapse-prone $\beta$-only training.
 
 We expand more on how optimizing this objective favors informative latent encoding in `notes/`.
+
+## 3. Target-rate training mitigates posterior collapse
+
+
+
+
+
+Compared with collapse-prone \(\beta\)-only training, the target-rate run exhibits:
+- a substantially larger mutual-information proxy;
+- visibly stronger sensitivity to latent interventions;
+- improved prior samples;
+- while maintaining good reconstruction quality.
+
+Thus, in our experiments, target-rate training provides a more direct and reliable mechanism for preserving an active latent space.
 
 
 

@@ -1,91 +1,199 @@
 import os
-import json
+import random
+import numpy as np
 import pandas as pd
 import torch
 
 from data import get_mnist_loaders
 from models import Encoder, Decoder, VAE
-from training_utils import train_one_epoch, evaluate_epoch
-from diagnostics2 import (
+from training_utils import (
+    train_one_epoch,
+    evaluate_epoch,
+    prefix_stats,
+    save_checkpoint,
+)
+from diagnostics import (
     collect_latents,
-    approx_rate_mi_mismatch_decomposition,
-    latent_intervention_metrics,
-    decoder_sensitivity,
-    local_decoder_sensitivity,
-    save_recon_grid,
-    save_prior_samples,
-    save_latent_intervention_grid,
-    save_agg_posterior_vs_prior,
+    approx_mi_diag_gaussian
 )
 
+
+def set_seed(seed):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+
+
+def save_csv_document(path, obj):
+    if isinstance(obj, dict):
+        df = pd.DataFrame([obj])
+    elif isinstance(obj, list):
+        if len(obj) > 0 and all(isinstance(item, dict) for item in obj):
+            df = pd.DataFrame(obj)
+        else:
+            df = pd.DataFrame({"value": obj})
+    else:
+        df = pd.DataFrame({"value": [obj]})
+    df.to_csv(path, index=False)
+
+
 def main():
-    targets = [2.0, 4.0, 8.0]
-    lams = [25.0, 50.0, 100.0]
-    seeds = [0, 1, 2, 3, 4]
+    targets = [1, 4, 8]
+    lams = [0.5, 1.0, 2.0]
+    # seeds = [0, 1, 2]
+    seeds = [0]
+    epochs = 30
+    batch_size = 128
+    latent_dim = 16
+    lr = 1e-3
+    split_seed = 0
+    penalty = "l2"
+
     out_dir = "./results_mnist_target_rate"
     os.makedirs(out_dir, exist_ok=True)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    train_loader, test_loader = get_mnist_loaders(batch_size=128, root="./data")
-    latent_dim = 16
-    all_runs = []
+    print(device)
+
+    # Fixed split, reused across all target-rate runs
+    train_loader, val_loader, test_loader, split_info = get_mnist_loaders(
+        batch_size=batch_size,
+        root="./data",
+        val_fraction=0.1,
+        split_seed=split_seed,
+        num_workers=2,
+    )
+
+    save_csv_document(os.path.join(out_dir, "split_info.csv"), split_info)
+
+    all_histories = []
 
     for target_rate in targets:
         for lam in lams:
             for seed in seeds:
-                torch.manual_seed(seed)
+                set_seed(seed)
+
+                print(
+                    f"\n========== Training: target_rate={target_rate}, "
+                    f"lambda={lam}, seed={seed} ==========\n"
+                )
 
                 run_dir = os.path.join(out_dir, f"target_{target_rate}_lam_{lam}_seed_{seed}")
                 os.makedirs(run_dir, exist_ok=True)
 
+                config = {
+                    "protocol": "target_rate",
+                    "objective": "target_rate",
+                    "target_rate": target_rate,
+                    "lam": lam,
+                    "penalty": penalty,
+                    "seed": seed,
+                    "epochs": epochs,
+                    "batch_size": batch_size,
+                    "latent_dim": latent_dim,
+                    "learning_rate": lr,
+                    "split_seed": split_seed,
+                    "device": str(device),
+                }
+                save_csv_document(os.path.join(run_dir, "config.csv"), config)
+                save_csv_document(os.path.join(run_dir, "split_info.csv"), split_info)
+
                 model = VAE(Encoder(latent_dim=latent_dim), Decoder(latent_dim=latent_dim)).to(device)
-                optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+                optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 
                 history = []
-                for epoch in range(1, 31):
+
+                for epoch in range(1, epochs + 1):
                     train_stats = train_one_epoch(
-                        model, train_loader, optimizer, device,
-                        objective="target", target_rate=target_rate, lam=lam, penalty="l1"
-                    )
-                    val_stats = evaluate_epoch(
-                        model, test_loader, device,
-                        objective="target", target_rate=target_rate, lam=lam, penalty="l1"
+                        model,
+                        train_loader,
+                        optimizer,
+                        device,
+                        objective="target",
+                        target_rate=target_rate,
+                        lam=lam,
+                        penalty=penalty,
                     )
 
-                    mus, logvars, _ = collect_latents(model, test_loader, device, max_batches=40)
-                    decomp = approx_rate_mi_mismatch_decomposition(mus, logvars)
-                    interv = latent_intervention_metrics(model, test_loader, device, n=64, eps=0.25)
+                    val_stats = evaluate_epoch(
+                        model,
+                        val_loader,
+                        device,
+                        objective="target",
+                        target_rate=target_rate,
+                        lam=lam,
+                        penalty=penalty,
+                    )
 
                     row = {
+                        "protocol": "target_rate",
                         "target_rate": target_rate,
                         "lam": lam,
+                        "penalty": penalty,
                         "seed": seed,
                         "epoch": epoch,
-                        "train_loss": train_stats["loss"],
-                        "train_distortion": train_stats["distortion"],
-                        "train_rate": train_stats["rate"],
-                        "train_rate_penalty": train_stats["rate_penalty"],
-                        "val_loss": val_stats["loss"],
-                        "val_distortion": val_stats["distortion"],
-                        "val_rate": val_stats["rate"],
-                        "decoder_sensitivity": decoder_sensitivity(model, latent_dim, device),
-                        "local_decoder_sensitivity": local_decoder_sensitivity(model, latent_dim, device),
-                        **decomp,
-                        **interv,
+                        "epochs_total": epochs,
+                        "latent_dim": latent_dim,
+                        "batch_size": batch_size,
+                        "split_seed": split_seed,
+                        **prefix_stats(train_stats, "train"),
+                        **prefix_stats(val_stats, "val"),
+                        "tr_M.I.": np.nan,
+                        "val_M.I.": np.nan
                     }
                     history.append(row)
 
-                pd.DataFrame(history).to_csv(os.path.join(run_dir, "epoch_stats.csv"), index=False)
-                save_recon_grid(model, test_loader, device, os.path.join(run_dir, "recon_grid.png"), n=8)
-                save_prior_samples(model, latent_dim, device, os.path.join(run_dir, "prior_samples.png"), n=64)
-                save_latent_intervention_grid(model, test_loader, device, os.path.join(run_dir, "interventions.png"), n=8)
+                    print(
+                        f"Epoch {epoch:02d} | "
+                        f"train_loss={row['train_loss']:.4f} | "
+                        f"val_loss={row['val_loss']:.4f} || "
+                        f"train_rate={row['train_rate']:.4f} | "
+                        f"val_rate={row['val_rate']:.4f} || "
+                        f"train_distortion={row['train_distortion']:.4f} | "
+                        f"val_distortion={row['val_distortion']:.4f} || "
+                    )
 
-                mus, logvars, _ = collect_latents(model, test_loader, device, max_batches=40)
-                save_agg_posterior_vs_prior(mus, logvars, os.path.join(run_dir, "agg_post_vs_prior.png"))
+                tr_mus, tr_logvars, _ = collect_latents(model, train_loader, device, max_batches=215)
+                tr_mi_proxy = approx_mi_diag_gaussian(tr_mus, tr_logvars)
+                history[-1]["tr_M.I."] = tr_mi_proxy
+                tr_rate = history[-1]["train_rate"]
+                print(f"\nTraining Mutual Information:  {tr_mi_proxy}")
+                print(f"KL(q(z) || p(z)) = Rate - M.I. :  {tr_rate-tr_mi_proxy}\n")
 
-                all_runs.append(history[-1])
+                print(f"- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -")
 
-    pd.DataFrame(all_runs).to_csv(os.path.join(out_dir, "summary.csv"), index=False)
+                val_mus, val_logvars, _ = collect_latents(model, val_loader, device, max_batches=30)
+                val_mi_proxy = approx_mi_diag_gaussian(val_mus, val_logvars)
+                history[-1]["val_M.I."] = val_mi_proxy
+                val_rate = history[-1]["val_rate"]
+                print(f"\nValidation Mutual Information:  {val_mi_proxy}")
+                print(f"KL(q(z) || p(z)) = Rate - M.I. :  {val_rate - val_mi_proxy}")
+                print("===================================================================================================\n")
+
+                history_df = pd.DataFrame(history)
+                history_df.to_csv(os.path.join(run_dir, "epoch_stats.csv"), index=False)
+
+                # Final epoch model is the canonical model for this run
+                save_checkpoint(
+                    os.path.join(run_dir, "final_model.pt"),
+                    model,
+                    optimizer,
+                    epoch=epochs,
+                    config=config,
+                    split_info=split_info,
+                    extra_metrics={"last_epoch": epochs},
+                )
+
+                all_histories.append(history_df)
+
+    summary_df = pd.concat(all_histories, ignore_index=True)
+    summary_df.to_csv(
+        os.path.join(out_dir, "summary_target_rate.csv"),
+        index=False,
+    )
+
 
 if __name__ == "__main__":
     main()

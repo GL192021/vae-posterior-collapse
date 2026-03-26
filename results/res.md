@@ -50,12 +50,12 @@ This of course can occure by a prior aggregated posterior mismatch (as we shall 
 More schematically we can see indeed that the the aggregated posterior and the prior are in fact aligned in both cases.
 
 <p align="center">
-  <img src="../figs/prior_vs_post__11.png" alt="Alt text" width="200"><br>
+  <img src="../figs/prior_vs_post__11.png" alt="Alt text" width="250"><br>
   <em>sampling from prior beta=11.</em>
 </p>
 
 <p align="center">
-  <img src="../figs/prior_vs_post__15.png" alt="Alt text" width="200"><br>
+  <img src="../figs/prior_vs_post__15.png" alt="Alt text" width="250"><br>
   <em>sampling from prior beta=11.</em>
 </p>
 

@@ -147,7 +147,7 @@ The numerical experiments support four main conclusions:
 1. Similar ELBO or validation-loss values do not guarantee similar latent usage.
 2. Choosing $\beta$ too large can suppress latent usage and lead to posterior collapse.
 3. KL alone is not a reliable proxy for how much information the latent variable carries about the input.
-4. Target-rate training provides a more direct mechanism for maintaining an active latent space.
+4. Target-rate training provides a more reliable mechanism for maintaining an active latent space.
 
 ## References
 <a id="1">[1]</a>  

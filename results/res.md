@@ -58,7 +58,7 @@ More schematically we can see indeed that the the aggregated posterior and the p
 </p>
 
 
-To further illustrate the posterior collapse phenomenon, we are going to study the dependence of reconstruction of a datapoint $x$ on the the latent variable $z$. This should definitetvely show that one model is in fact encoding meaningfully thethe dataset in the latent space and uses is using the latent information for the reconstruction stage, while the other isn't.
+To further illustrate the posterior collapse phenomenon, we are going to study the dependence of reconstruction of a datapoint $x$ on the the latent variable $z$. This should definitetvely show that one model is in fact encoding meaningfully the dataset in the latent space and uses is using the latent information for the reconstruction stage, while the other isn't.
 
 ---
 
@@ -85,8 +85,6 @@ This control is the more interesting counterexample. The encoder is still indepe
 ---
 
 ## 4. Target-rate run
-
-
 
 The main point is that the target-rate objective preserves a visibly active latent space while maintaining good reconstructions. Qualitatively and quantitatively, this is the intended contrast with collapse-prone beta-only training.
 

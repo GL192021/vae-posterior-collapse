@@ -61,12 +61,12 @@ More schematically we can see indeed that the the aggregated posterior and the p
 To further illustrate the posterior collapse phenomenon, we are going to study the dependence of reconstruction of a datapoint $x$ on the the latent variable $z$. This should definitetvely show that one model is in fact encoding meaningfully the dataset in the latent space and uses is using the latent information for the reconstruction stage, while the other isn't.
 
 <p align="center">
-  <img src="../figs/latent_interventions__11.0.png" alt="Alt text" width="250"><br>
+  <img src="../figs/latent_interventions__11.png" alt="Alt text" width="250"><br>
   <em>sampling from prior beta=11.</em>
 </p>
   
 <p align="center">
-  <img src="../figs/latent_interventions__15.0" alt="Alt text" width="250"><br>
+  <img src="../figs/latent_interventions__15.png" alt="Alt text" width="250"><br>
   <em>sampling from prior beta=15.</em>
 </p>
 

@@ -58,7 +58,7 @@ The `notes/` folder contains the main conceptual contribution of the repository:
 
 
 ## Numerical Results and Figures
-The file `numerical_results.md` int the `results/` folder contains the results of the current implementation together with figures demonstrating the main claims.
+The file `results/numerical_results.md` contains the numerical results of the current implementation together with figures demonstrating the main claims.
 
 
 ---

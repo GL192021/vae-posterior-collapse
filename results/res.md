@@ -38,6 +38,18 @@ So similar models, in the sense of $\beta$-losses, can actually differ drastical
   <em>This is the caption for the image.</em>
 </p>
 
+<div style="display: flex; gap: 20px;">
+  <figure style="text-align: center;">
+    <img src="../figs/prior_samples_11.0.png" alt="Image 1" width="300"/>
+    <figcaption>Caption for image 1</figcaption>
+  </figure>
+
+  <figure style="text-align: center;">
+    <img src="../figs/prior_samples_11.0.png" alt="Image 2" width="300"/>
+    <figcaption>Caption for image 2</figcaption>
+  </figure>
+</div>
+
 
 This of course can occure by a prior aggregated posterior mismatch (as we shall see below), therefore we will further investigate the latent usage. For starters, we notice that we do not have a case of mismatch in our examples.
 

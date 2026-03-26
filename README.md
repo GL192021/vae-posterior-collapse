@@ -51,7 +51,7 @@ which penalizes collapse toward zero rate and helps preserve nontrivial latent u
 
 
 ## Mathematical explanation
-The `notes/` folder contains the main conceptual contribution of the repository: a mathematical explanation of why the target-rate objective helps discourage posterior collapse, together with a more explicit account of why this goes beyond the standard $\beta$-VAE viewpoint with an informal KL target. This point is not developed explicitly in [[1]](#1), and it is one of the main motivations for writing these notes.
+The `notes/` folder contains the main conceptual contribution of the repository: a concrete mathematical explanation of why the target-rate objective helps discourage posterior collapse, together with a more explicit mechanism-level account of how it favors genuinely informative latent representations over merely inflated KL values in the $\beta$-objective. This point is not developed explicitly in [[1]](#1), and it is one of the main motivations for writing these notes.
 
 ---
 

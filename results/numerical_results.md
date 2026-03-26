@@ -1,6 +1,6 @@
 # Numerical Results
 
-We evaluate posterior collapse using four complementary diagnostics: validation loss, rate, an approximate mutual-information proxy, and latent sensitivity.
+We evaluate posterior collapse using four complementary diagnostics: total loss, rate/KL, an approximate mutual-information proxy, and latent quality/sensitivity.
 
 Here we summarize the main empirical claims of the repository.
 

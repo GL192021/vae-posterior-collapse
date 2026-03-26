@@ -20,6 +20,7 @@ The table below shows that two models with comparable total $\beta$-losses can n
 | $\beta=11$ | 185 | 4.86 |
 | $\beta=15$ | 199 | 0.629 |
 
+
 This gives a concrete numerical example of the phenomenon.
 
 The two models have relatively close total $\beta$-loss values:
@@ -116,17 +117,36 @@ The final figure shows that the KL term is nonzero only because of the severe mi
 
 ---
 
-## 3. Target-rate run
+## 3. Target-rate training
 
 The main point of the target-rate objective is to enforce a nontrivial information budget directly, rather than hoping that a suitable choice of $\beta$ will implicitly do so. In our experiments, the target-rate run preserves a visibly active latent space while maintaining good reconstructions. Both qualitatively and quantitatively, this is the intended contrast with collapse-prone $\beta$-only training.
 
 We expand more on how optimizing this objective favors informative latent encoding in `notes/`.
 
-## 3. Target-rate training mitigates posterior collapse
+| Model | Total Loss | Rate (KL term) | Mutual Information |
+|---|---:|---:|---:|
+| $\beta=11$ | 185 |  4.88 | 4.86 |
+| $\beta=15$ | 199 | 0.645 | 0.629 |
+| target-rate | 128 | 6.65 | 6.63 |
+
+**Note** In `notes/` it is also expalined how the mutual information, in the good scenario that we have maximal latent information, should be close to the rate (KL term). Though, as we see for the case $\beta=15$, the difference is small but the information capacity of the latent encoding is insufficient.
 
 
+<p align="center">
+  <img src="../figs/prior_samples__target-rate.png" alt="Prior samples for constant encoder control" width="250"><br>
+  <em>Sampling from the prior $\mathcal{N}(0,I)$.</em>
+</p>
 
+<p align="center">
+  <img src="../figs/latent_interventions__target-rate.png" alt="Latent interventions for constant encoder control" width="250"><br>
+  <em>Latent interventions for the constant-encoder control.</em>
+</p>
 
+These figures show that the latent encoding quality is extremely poor, despite the large KL term.
+
+<p align="center">
+  <img src="../figs/prior_vs_post__target-rate.png" alt="Prior versus posterior for constant encoder control" width="300"><br>
+</p>
 
 Compared with collapse-prone \(\beta\)-only training, the target-rate run exhibits:
 - a substantially larger mutual-information proxy;

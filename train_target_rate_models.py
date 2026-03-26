@@ -42,8 +42,7 @@ def save_csv_document(path, obj):
 def main():
     targets = [1, 4, 8]
     lams = [0.5, 1.0, 2.0]
-    # seeds = [0, 1, 2]
-    seeds = [0]
+    seeds = [0, 1, 2]
     epochs = 30
     batch_size = 128
     latent_dim = 16

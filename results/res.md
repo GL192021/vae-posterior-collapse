@@ -41,9 +41,10 @@ More schematically we can see indeed that the the aggregated posterior and the p
 
 ![prior vs post beta=11](../figs/prior_vs_post__11.png)
 ![prior vs post beta=15](../figs/prior_vs_post__15.png)
+![prior vs post beta=15](../figs/prior_vs_post__15.png)
 
 
-The line 
+A 
 
 ---
 

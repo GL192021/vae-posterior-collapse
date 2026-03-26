@@ -37,12 +37,12 @@ Thus, models that look similar from the point of view of total $\beta$-loss can 
 
 <p align="center">
   <img src="../figs/prior_samples_11.0.png" alt="Prior samples for beta equals 11" width="250"><br>
-  <em>Sampling from the prior for $\beta=11$.</em>
+  <em>Sampling from the prior $\mathcal{N}(0,I)$ for $\beta=11$.</em>
 </p>
 
 <p align="center">
   <img src="../figs/prior_samples_15.0.png" alt="Prior samples for beta equals 15" width="250"><br>
-  <em>Sampling from the prior for $\beta=15$.</em>
+  <em>Sampling from the prior $\mathcal{N}(0,I)$ for $\beta=15$.</em>
 </p>
 
 Poor prior samples can, however, arise for two different reasons: either the model does not use the latent space, or the aggregated posterior is badly mismatched with the prior. We therefore examine the latter possibility explicitly. In the present comparison, there is no substantial mismatch effect.
@@ -104,7 +104,7 @@ This is the more interesting control experiment: the encoder does not depend on 
 
 <p align="center">
   <img src="../figs/latent_interventions__kl_large.png" alt="Latent interventions for constant encoder control" width="250"><br>
-  <em>Latent interventions for the constant-encoder control.</em>
+  <em>Latent interventions for the constant-encoder.</em>
 </p>
 
 These figures show that the latent encoding quality is extremely poor, despite the large KL term.
@@ -129,23 +129,23 @@ We expand more on how optimizing this objective favors informative latent encodi
 | $\beta=15$ | 199 | 0.645 | 0.629 |
 | target-rate | 128 | 6.65 | 6.63 |
 
-**Note** In `notes/` it is also expalined how the mutual information, in the good scenario that we have maximal latent information, should be close to the rate (KL term). Though, as we see for the case $\beta=15$, the difference is small but the information capacity of the latent encoding is insufficient.
+**Note. **  In `notes/` it is also expalined how the mutual information, in the good scenario that we have maximal latent information, should be close to the rate (KL term). Though, as we see for the case $\beta=15$, the difference is small but the information capacity of the latent encoding is insufficient.
+
+We demonstrate the results of the corresponding experiments in this case
 
 
 <p align="center">
-  <img src="../figs/prior_samples__target-rate.png" alt="Prior samples for constant encoder control" width="250"><br>
+  <img src="../figs/prior_samples__target_rate.png" alt="Prior samples for constant encoder control" width="250"><br>
   <em>Sampling from the prior $\mathcal{N}(0,I)$.</em>
 </p>
 
 <p align="center">
-  <img src="../figs/latent_interventions__target-rate.png" alt="Latent interventions for constant encoder control" width="250"><br>
-  <em>Latent interventions for the constant-encoder control.</em>
+  <img src="../figs/latent_interventions__target_rate.png" alt="Latent interventions for constant encoder control" width="250"><br>
+  <em>Latent interventions for the target-rate.</em>
 </p>
 
-These figures show that the latent encoding quality is extremely poor, despite the large KL term.
-
 <p align="center">
-  <img src="../figs/prior_vs_post__target-rate.png" alt="Prior versus posterior for constant encoder control" width="300"><br>
+  <img src="../figs/prior_vs_post__target_rate.png" alt="Prior versus posterior for constant encoder control" width="300"><br>
 </p>
 
 Compared with collapse-prone \(\beta\)-only training, the target-rate run exhibits:

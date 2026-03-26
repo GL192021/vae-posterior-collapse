@@ -34,7 +34,7 @@ So similar models, in the sense of $\beta$-losses, can actually differ drastical
   <em>sampling from prior beta=11.</em>
 </p>
 <p align="center">
-  <img src="../figs/prior_samples_11.0.png" alt="Alt text" width="200"><br>
+  <img src="../figs/prior_samples_15.0.png" alt="Alt text" width="200"><br>
   <em>sampling from prior beta=15.</em>
 </p>
 

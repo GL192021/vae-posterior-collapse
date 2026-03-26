@@ -117,6 +117,10 @@ The final figure shows that the KL term is nonzero only because of the severe mi
 
 The main point of the target-rate objective is to enforce a nontrivial information budget directly, rather than hoping that a suitable choice of $\beta$ will implicitly do so. In our experiments, the target-rate run preserves a visibly active latent space while maintaining good reconstructions. Both qualitatively and quantitatively, this is the intended contrast with collapse-prone $\beta$-only training.
 
+We expand more on how optimizing this objective favors informative latent encoding in `notes/`.
+
+
+
 ---
 
 ## Summary

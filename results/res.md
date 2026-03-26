@@ -30,7 +30,7 @@ So similar models, in the sense of $\beta$-losses, can actually differ drastical
 ![gneration/sampling from prior beta=15](../figs/prior_samples_15.0.png)
 
 <p align="center">
-  <img src="../figs/prior_samples_11.0.png" alt="Alt text" width="300"><br>
+  <img src="../figs/prior_samples_11.0.png" alt="Alt text" width="200"><br>
   <em>This is the caption for the image.</em>
 </p>
 <p align="center">

@@ -28,12 +28,12 @@ On the other hand the mututal information---and thus the latent ussage---drastic
 So similar models, in the sense of $\beta$-losses, can actually differ drastically. In the extremes, this difference can be manifested as no-collapse versus collapse. An indicator of collapsing (i.e. usage of latent space), is that the generative aspect of the model performs very poorly, as sampling from the prior is meaningless, since the model does not utilize the latent space. 
 
 <p align="center">
-  <img src="../figs/prior_samples_11.0.png" alt="Alt text" width="200"><br>
+  <img src="../figs/prior_samples_11.0.png" alt="Alt text" width="250"><br>
   <em>sampling from prior beta=11.</em>
 </p>
   
 <p align="center">
-  <img src="../figs/prior_samples_15.0.png" alt="Alt text" width="200"><br>
+  <img src="../figs/prior_samples_15.0.png" alt="Alt text" width="250"><br>
   <em>sampling from prior beta=15.</em>
 </p>
 

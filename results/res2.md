@@ -169,8 +169,13 @@ The numerical experiments support four main conclusions:
 3. KL alone is not a reliable proxy for how much information the latent variable carries about the input.
 4. Target-rate training provides a more reliable mechanism for maintaining an active latent space.
 
+---
+---
+
+
+
 ## References
-<a id="1">[1]</a>  
-Alexander A. Alemi, Ben Poole, Ian Fischer, Joshua V. Dillon, Rif A. Saurous, and Kevin Murphy.  
-**Fixing a Broken ELBO**.  
+<a id="1">[1]</a> 
+Alexander A. Alemi, Ben Poole, Ian Fischer, Joshua V. Dillon, Rif A. Saurous, and Kevin Murphy. 
+**Fixing a Broken ELBO**. 
 Proceedings of the 35th International Conference on Machine Learning (ICML), volume 80, pages 159–168, 2018.

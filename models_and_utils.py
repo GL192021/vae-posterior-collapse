@@ -4,6 +4,8 @@ import torch.nn.functional as F
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 from collections import defaultdict
+from collections import defaultdict
+from numbers import Number
 
 
 ## DATA
@@ -169,6 +171,23 @@ def target_rate_loss(x_hat, x, mu, logvar, target_rate=4.0, lam=100.0, penalty="
 
 
 ## TRAINING UTILS
+def prefix_stats(stats, prefix):
+    return {f"{prefix}_{k}": v for k, v in stats.items()}
+
+
+def _numeric_stats_only(stats):
+    cleaned = {}
+    for k, v in stats.items():
+        if isinstance(v, torch.Tensor):
+            if v.numel() == 1:
+                v = v.item()
+            else:
+                continue
+        if isinstance(v, Number):
+            cleaned[k] = float(v)
+    return cleaned
+
+
 def train_one_epoch(
     model,
     loader,
@@ -207,6 +226,7 @@ def train_one_epoch(
         loss.backward()
         optimizer.step()
 
+        stats = _numeric_stats_only(stats)
         for k, v in stats.items():
             running[k] += v
         n_batches += 1
@@ -248,8 +268,31 @@ def evaluate_epoch(
         else:
             raise ValueError("Unknown objective")
 
+        stats = _numeric_stats_only(stats)
         for k, v in stats.items():
             running[k] += v
         n_batches += 1
 
     return {k: v / n_batches for k, v in running.items()}
+
+def save_checkpoint(
+    path,
+    model,
+    optimizer,
+    epoch,
+    config,
+    split_info,
+    extra_metrics=None,
+):
+    payload = {
+        "epoch": epoch,
+        "model_state_dict": model.state_dict(),
+        "config": config,
+        "split_info": split_info,
+    }
+    if optimizer is not None:
+        payload["optimizer_state_dict"] = optimizer.state_dict()
+    if extra_metrics is not None:
+        payload["extra_metrics"] = extra_metrics
+
+    torch.save(payload, path)

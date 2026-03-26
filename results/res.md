@@ -27,13 +27,6 @@ On the other hand the mututal information---and thus the latent ussage---drastic
 ### Quality of latent encoding
 So similar models, in the sense of $\beta$-losses, can actually differ drastically. In the extremes, this difference can be manifested as no-collapse versus collapse. An indicator of collapsing (i.e. usage of latent space), is that the generative aspect of the model performs very poorly, as sampling from the prior is meaningless, since the model does not utilize the latent space. 
 
-In the figures below, we are seeing the follwing experiment:
-- first row: real data
-- second row: reconstructions
-- thrid row: reconstructions with constant latent $z=0$
-- fourth row: reconstructions after shuffling the latents $z_i$ of the batch we considered
-- fifth row: reconstruction after randomly perturbing the latent $z$
-
 <p align="center">
   <img src="../figs/prior_samples_11.0.png" alt="Alt text" width="250"><br>
   <em>sampling from prior beta=11.</em>
@@ -67,6 +60,13 @@ More schematically we can see indeed that the the aggregated posterior and the p
 
 
 To further illustrate the posterior collapse phenomenon, we are going to study the dependence of reconstruction of a datapoint $x$ on the the latent variable $z$. This should definitetvely show that one model is in fact encoding meaningfully the dataset in the latent space and uses is using the latent information for the reconstruction stage, while the other isn't.
+
+In the figures below, we are seeing the follwing experiment:
+- first row: real data
+- second row: reconstructions
+- thrid row: reconstructions with constant latent $z=0$
+- fourth row: reconstructions after shuffling the latents $z_i$ of the batch we considered
+- fifth row: reconstruction after randomly perturbing the latent $z$
 
 <p align="center">
   <img src="../figs/latent_interventions__11.png" alt="Alt text" width="250"><br>

@@ -78,25 +78,26 @@ In the figures below, we are seeing the follwing experiment:
   <em>sampling from prior beta=15.</em>
 </p>
 
+
+The bottom line of this section is that, we want of course to make KL small, but "over-prioritizing" with large $\beta$, might hurt the model and even lead to posterior collapse.
 ---
 
 
 
-## 2. KL alone can be misleading
+## 2. KL alone can be misleading: Collapse with large KL
 
 The above discussion might be an indicator that in order to avoid posterior collapse, we only need to keep the KL term (relatively) high. As we shall see, that does not always solve the problem.
 
-To demostrate what could potentially go wrong, even with keeping the KL term waway from zero, we will implement some controloed counter examples using a Constant-Encoder.
+To demostrate what could potentially go wrong, even with keeping the KL term away from zero, we will implement some controloed counter examples using a Constant-Encoder. In particular, we are going to see what o posterior collapse might look like with the KL term being (arbitrarily) large. 
 
-### Collapse with near-zero KL
+| Model | KL Loss | Total Loss | Mutual Information |
+|---|---:|---:|---:|
+| constant encoder with $\mathcal{N}(4,I)$ | 128   | 334 | 0 |
 
-![Collapse with near-zero KL](../figs/collapse_kl_zero_recon_grid.png)
-
-This control corresponds to a degenerate setting where the encoder is constant and the KL remains small. It is a useful sanity check: low KL is compatible with collapse, which is the usual textbook warning.
-
-### Collapse with large KL
-
-![Collapse with large KL](../figs/collapse_kl_large_recon_grid.png)
+<p align="center">
+  <img src="../figs/latent_interventions__15.png" alt="Alt text" width="250"><br>
+  <em>sampling from prior beta=15.</em>
+</p>
 
 This control is the more interesting counterexample. The encoder is still independent of the input, so the latent code is not informative, yet the KL can be large. This shows that large KL is not sufficient evidence of meaningful latent usage.
 

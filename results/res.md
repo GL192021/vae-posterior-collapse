@@ -29,12 +29,12 @@ So similar models, in the sense of $\beta$-losses, can actually differ drastical
 
 <p align="center">
   <img src="../figs/prior_samples_11.0.png" alt="Alt text" width="250"><br>
-  <em>sampling from prior beta=11.</em>
+  <em>sampling from prior $\beta=11$.</em>
 </p>
   
 <p align="center">
   <img src="../figs/prior_samples_15.0.png" alt="Alt text" width="250"><br>
-  <em>sampling from prior beta=15.</em>
+  <em>sampling from prior $\beta=15$.</em>
 </p>
 
 
@@ -70,12 +70,12 @@ In the figures below, we are seeing the follwing experiment:
 
 <p align="center">
   <img src="../figs/latent_interventions__11.png" alt="Alt text" width="250"><br>
-  <em>sampling from prior beta=11.</em>
+  <em>latent quality $\beta = 11$.</em>
 </p>
   
 <p align="center">
   <img src="../figs/latent_interventions__15.png" alt="Alt text" width="250"><br>
-  <em>sampling from prior beta=15.</em>
+  <em>latent quality $\beta = 15$.</em>
 </p>
 
 
@@ -95,9 +95,19 @@ To demostrate what could potentially go wrong, even with keeping the KL term awa
 | constant encoder with $\mathcal{N}(4,I)$ | 128   | 334 | 0 |
 
 <p align="center">
-  <img src="../figs/latent_interventions__15.png" alt="Alt text" width="250"><br>
-  <em>sampling from prior beta=15.</em>
+  <img src="../figs/prior_samples__kl_large.png" alt="Alt text" width="250"><br>
+  <em>sampling from prior $N(0,I)$.</em>
 </p>
+
+<p align="center">
+  <img src="../figs/prior_vs_post__15.png" alt="Alt text" width="300"><br>
+</p>
+
+<p align="center">
+  <img src="../figs/prior_vs_post__kl_large.png" alt="Alt text" width="250"><br>
+  <em>latent quality.</em>
+</p>
+
 
 This control is the more interesting counterexample. The encoder is still independent of the input, so the latent code is not informative, yet the KL can be large. This shows that large KL is not sufficient evidence of meaningful latent usage.
 

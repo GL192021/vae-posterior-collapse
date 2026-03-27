@@ -129,7 +129,7 @@ We expand more on how optimizing this objective favors informative latent encodi
 | $\beta=15$ | 199 | 0.645 | 0.629 |
 | target-rate (r\*=4, λ=0.5) | 128 | 6.65 | 6.63 |
 
-**Note. **  In `notes/` it is also explained how the mutual information, in the good scenario that we have maximal latent information, should be close to the rate (KL term). Though, as we see for the case $\beta=15$, the difference is small but the information capacity of the latent encoding is insufficient. 
+**Note.**  In `notes/` it is also explained how the mutual information, in the good scenario that we have maximal latent information, should be close to the rate (KL term). Though, as we see for the case $\beta=15$, the difference is small but the information capacity of the latent encoding is insufficient. 
 
 The figures below illustrate the corresponding target-rate experiment.
 
@@ -148,7 +148,7 @@ The figures below illustrate the corresponding target-rate experiment.
   <img src="../figs/prior_vs_post__target_rate.png" alt="Prior versus posterior for constant encoder control" width="300"><br>
 </p>
 
-Compared with collapse-prone \(\beta\)-only training, the target-rate run exhibits:
+Compared with collapse-prone $\beta$-only training, the target-rate run exhibits:
 - a substantially larger mutual-information proxy;
 - visibly stronger sensitivity to latent interventions;
 - improved prior samples;
